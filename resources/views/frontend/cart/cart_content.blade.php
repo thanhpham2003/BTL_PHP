@@ -1,0 +1,1 @@
+<x-cart-component></x-cart-component>
