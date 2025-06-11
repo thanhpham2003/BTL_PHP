@@ -61,11 +61,11 @@
                 </p>
 
                 <div class="p-t-15">
-                    <a href="https://www.facebook.com/nguyen.manh.670379" class="fs-18 cl7 hov-cl1 trans-04 m-r-10" target="_blank">
+                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-10" style = "text-decoration: none;" target="_blank">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
 
-                    <a href="https://www.instagram.com/_18flyn_/" class="fs-18 cl7 hov-cl1 trans-04 m-r-10" target="_blank">
+                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-10" style = "text-decoration: none;" target="_blank">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
                 </div>

@@ -236,7 +236,8 @@
                                     <span class="ms-2">{{ Auth::guard('frontend')->user()->name }}</span>
                                 </button>
                                 <ul class="dropdown-menu mt-3" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('user.info')}}">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('user.myOrder') }}">Đơn hàng của tôi</a></li>
                                     <li>
                                         <form action="{{ route('fr.logout') }}" method="POST">
                                             @csrf

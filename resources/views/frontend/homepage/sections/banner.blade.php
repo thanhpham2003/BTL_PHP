@@ -8,7 +8,7 @@
                     <img src="/template/images/banner-01.jpg" alt="IMG-BANNER">
 
                     <a href="product.html"
-                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" style = "text-decoration: none;">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
                                 NỮ
@@ -34,7 +34,7 @@
                     <img src="/template/images/banner-02.jpg" alt="IMG-BANNER">
 
                     <a href="product.html"
-                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" style = "text-decoration: none;">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
                                 NAM
@@ -60,7 +60,7 @@
                     <img src="/template/images/banner-03.jpg" alt="IMG-BANNER">
 
                     <a href="product.html"
-                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" style = "text-decoration: none;">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
                                 THỜI TRANG

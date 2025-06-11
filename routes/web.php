@@ -22,6 +22,7 @@ use App\Http\Controllers\FrontEnd\ProductController;
 use App\Http\Controllers\FrontEnd\ReviewController;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\FrontEnd\OrderController;
+use App\Http\Controllers\FrontEnd\UserInfoController;
 
 //admin
 Route::get('admin/users/login', [LoginAdminController::class, 'index'])->name('login');
@@ -147,4 +148,11 @@ Route::middleware(['auth:frontend'])->group(function () {
         Route::post("/order", [OrderController::class, "store"])->name("fr.order");
     });
     Route::post('/review', [ReviewController::class, 'send'])->name('fr.review.send');
+});
+
+
+Route::controller(UserInfoController::class)->group(function() {
+    Route::get('/user-info/index', 'index')->name('user.info');
+    Route::get('/my-order', 'myOrderIndex')->name('user.myOrder');
+    Route::put('/my-order/cancel/{id}', 'cancelOrder')->name('user.cancelOrder');
 });

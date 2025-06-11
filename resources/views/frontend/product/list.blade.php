@@ -8,7 +8,7 @@
                         <img src="{{ asset($product->thumb) }}" alt="IMG-PRODUCT"
                             style="width: 100%; height: 400px; object-fit: cover;">
                         <a href="/san-pham/{{ $product->id }}-{{ Str::slug($product->name, '-') }}"
-                            data-id="{{ $product->id }}"
+                            data-id="{{ $product->id }}" style = "text-decoration: none;"
                             class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                             Xem ngay
                         </a>

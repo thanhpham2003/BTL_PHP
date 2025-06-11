@@ -37,7 +37,7 @@
                     <form id="contact-form">
                         @csrf
                         <h4 class="mtext-105 cl2 txt-center p-b-30">
-                            Trao đổi
+                            Liên vệ với chúng tôi
                         </h4>
 
                         <div class="bor8 m-b-20 how-pos4-parent">
