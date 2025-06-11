@@ -189,14 +189,16 @@
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
                         @if (auth('frontend')->check())
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                                id="notification-icon">
-                                <i class="fa-regular fa-bell"></i>
+                                <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  position-relative"
+                            id="notification-icon">
+                            <i class="fa-regular fa-bell"></i>
 
-                                @if (!$orders->isEmpty())
-                                    <span class="notification-dot"></span>
-                                @endif
-                            </div>
+                            @if (!$orders->isEmpty())
+                                <span class="badge-noti">
+                                    {{ $orders->count() > 99 ? '99+' : $orders->count() }}
+                                </span>
+                            @endif
+                        </div>
                             <div class="notification-dropdown" id="notification-dropdown">
                                 <div class="notification-header">Thông báo đơn hàng</div>
                                 <ul>

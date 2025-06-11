@@ -39,12 +39,39 @@
         color: #e63946;
         text-decoration: none;
     }
+    .badge-noti {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 1;
+    min-width: 18px;
+    text-align: center;
+}
+
 </style>
 <div>
-    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-        @if (count($cart->content()) > 0) data-notify="{{ count($cart->content()) }}" @endif>
+    @php
+        $cartItems = $cart->content();
+        $cartCount = is_countable($cartItems) ? count($cartItems) : 0;
+    @endphp
+
+    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart"
+        @if ($cartCount > 0) data-notify="{{ $cartCount > 99 ? '99+' : $cartCount }}" @endif>
         <i class="zmdi zmdi-shopping-cart"></i>
+
+        @if ($cartCount > 0)
+            <span class="badge-noti">
+                {{ $cartCount > 99 ? '99+' : $cartCount }}
+            </span>
+        @endif
     </div>
+
     <div class="wrap-header-cart js-panel-cart">
         <div class="s-full js-hide-cart"></div>
         <div class="header-cart flex-col-l p-l-65 p-r-25">

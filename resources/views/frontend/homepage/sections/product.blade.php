@@ -56,7 +56,7 @@
                                 data-name="{{ $product->name }}" data-price="{{ $product->price }}"
                                 data-price-sale="{{ $product->price_sale }}"
                                 data-description="{{ $product->description }}"
-                                data-image="{{ asset($product->thumb) }}"">
+                                data-image="{{ asset($product->thumb) }}">
                                 Xem ngay
                             </a>
                         </div>
