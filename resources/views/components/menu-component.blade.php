@@ -1,14 +1,12 @@
 <style>
     .main-menu li.active a {
-    color: #ff6600; /* Màu cam */
+    color: #ff6600; 
     font-weight: bold;
-    border-bottom: 2px solid #ff6600; /* Gạch chân */
+    border-bottom: 2px solid #ff6600; 
 }
     .active {
         font-weight: bold;
-        /* Hoặc bất kỳ kiểu dáng nào bạn muốn */
-        color: #ff6347
-            /* Màu sắc cho mục đang được chọn */
+        color: #ff6347;
     }
 
     .notification-dropdown {
@@ -119,12 +117,14 @@
     .notification-dot {
         position: absolute;
         top: 5px;
-        /* Điều chỉnh vị trí theo ý muốn */
         right: 5px;
         width: 10px;
         height: 10px;
         background-color: red;
         border-radius: 50%;
+    }
+    .nav-link-custom {
+        font-size: 18px !important;
     }
 </style>
 <div>
@@ -136,7 +136,7 @@
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a href="{{ route('fr.homepage') }}" class="logo">
+                    <a href="{{ route('fr.homepage') }}" class="logo" style = "text-decoration: none;">
                         <img src="/template/admin/dist/img/download.jpg" alt="AdminLTE Logo"
                             class="brand-image img-circle elevation-3"
                             style="opacity: .8; width: 50px; height: 120px; border-radius: 50%;">
@@ -146,23 +146,23 @@
 
                     <!-- Menu desktop -->
                     <div class="menu-desktop">
-                        <ul class="main-menu">
-                            <li class="{{ request()->is('/') ? 'active' : '' }}">
-                                <a href="{{ route('fr.homepage') }}">Trang chủ</a>
+                        <ul class="main-menu nav">
+                            <li class="{{ request()->is('/') ? 'active' : '' }} nav-item">
+                                <a href="{{ route('fr.homepage') }}" class = "nav-link nav-link-custom">Trang chủ</a>
                             </li>
 
 
                             <li class="{{ request()->is('product') ? 'active' : '' }}">
-                                <a href="{{ route('fr.product') }}">Cửa hàng</a>
+                                <a href="{{ route('fr.product') }}" class = "nav-link nav-link-custom">Cửa hàng</a>
                             </li>
 
 
                             <li class="{{ request()->is('about') ? 'active' : '' }}">
-                                <a href="{{ route('fr.about') }}">Giới thiệu</a>
+                                <a href="{{ route('fr.about') }}" class = "nav-link nav-link-custom">Giới thiệu</a>
                             </li>
 
                             <li class="{{ request()->is('contact') ? 'active' : '' }}">
-                                <a href="{{ route('fr.contact') }}">Liên hệ</a>
+                                <a href="{{ route('fr.contact') }}" class = "nav-link nav-link-custom">Liên hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -229,23 +229,27 @@
                             </div>
                         @endif
 
-                        <a href="{{ route('fr.login') }}"
-                            class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10">
-                            @auth('frontend')
-                                <!-- Nếu đã đăng nhập, hiển thị icon đăng xuất và thực hiện hành động đăng xuất -->
-                                <form action="{{ route('fr.logout') }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <button type="submit" class="icon-btn">
-                                        <i class="fa-solid fa-right-from-bracket"></i> <!-- Icon đăng xuất -->
-                                    </button>
-                                </form>
-                            @else
-                                <!-- Nếu chưa đăng nhập, hiển thị icon tài khoản -->
-                                <i class="zmdi zmdi-account"></i> <!-- Icon tài khoản -->
-                            @endauth
-                        </a>
-
-
+                        @auth('frontend')
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ Auth::guard('frontend')->user()->avatar ?? asset('/image/default-avatar.jpg') }}" alt="Avatar" class="rounded-circle" width="30" height="30" style = "margin-right: 8px;">
+                                    <span class="ms-2">{{ Auth::guard('frontend')->user()->name }}</span>
+                                </button>
+                                <ul class="dropdown-menu mt-3" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                                    <li>
+                                        <form action="{{ route('fr.logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Đăng xuất</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @else
+                            <a href="{{ route('fr.login') }}" class="btn btn-outline-primary d-flex align-items-center">
+                                <i class="zmdi zmdi-account me-2"></i> Đăng nhập
+                            </a>
+                        @endauth
                     </div>
                 </nav>
             </div>
@@ -390,3 +394,4 @@
         }
     });
 </script>
+
