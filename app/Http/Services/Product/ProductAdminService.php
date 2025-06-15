@@ -27,7 +27,7 @@ class ProductAdminService
             $data = array_merge(
                 $request->all(),
                 ['thumb' => $thumbPath]
-            );   
+            );  
             Product::create($data);
             Session::flash('success', 'Thêm Sản phẩm thành công');
         } catch (\Exception $err) {

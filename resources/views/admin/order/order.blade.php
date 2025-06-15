@@ -101,6 +101,7 @@
                                 <button type="submit" class="btn btn-danger btn-sm"><i
                                         class="fa-solid fa-xmark"></i></button>
                             </form>
+                            <a href = "{{ route('export.pdf', ['id' => $order->id])}}" class = "btn btn-sm btn-primary mt-2">Xuất hoá đơn</a>
                         @elseif ($order->status == 'processing')
                             <form action="{{ route('admin.order.markAsShipped', $order->id) }}" method="POST"
                                 style="display:inline;">

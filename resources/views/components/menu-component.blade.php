@@ -326,7 +326,6 @@
                         <i class="zmdi zmdi-account"></i> <!-- Icon tài khoản -->
                     @endauth
                 </a>
-
             </div>
 
             <!-- Button show menu -->
@@ -382,7 +381,7 @@
 
 <script>
     document.getElementById("notification-icon").addEventListener("click", function(event) {
-        event.stopPropagation(); // Ngăn chặn sự kiện click lan ra ngoài
+        event.stopPropagation();
         document.getElementById("notification-dropdown").classList.toggle("active");
     });
 

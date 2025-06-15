@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutAdminController;
+use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\InfoAdminController;
 use Illuminate\Support\Facades\Route;
@@ -155,4 +156,15 @@ Route::controller(UserInfoController::class)->group(function() {
     Route::get('/user-info/index', 'index')->name('user.info');
     Route::get('/my-order', 'myOrderIndex')->name('user.myOrder');
     Route::put('/my-order/cancel/{id}', 'cancelOrder')->name('user.cancelOrder');
+});
+
+Route::controller(PayController::class)->group(function() {
+    Route::post('/checkout/confirm', 'checkoutForm')->name('user.payment');
+    Route::post('/payment/momo', 'createPayment')->name('user.createPayment');
+    Route::get('/payment/momo/return', 'return');
+    Route::post('/payment/momo/ipn', 'ipn');
+});
+
+Route::controller(BillController::class)->group(function() {
+    Route::get('/bill/{id}/export-pdf', 'exportPdf')->name('export.pdf');
 });

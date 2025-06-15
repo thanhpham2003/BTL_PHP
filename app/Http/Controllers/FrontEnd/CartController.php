@@ -50,13 +50,15 @@ class CartController extends Controller
 
     public function viewCart(MenuService $menuService)
     {
+        $user = auth("frontend")->user();
         $cart = Cart::getInstance(auth("frontend")->id());
         $cart->refresh();
         $menus = $menuService->getParent();
         return view('frontend.cart.cartDetail', [
             'cart' => $cart,
             'title' => 'Chi tiết giỏ hàng',
-            'menus' => $menus
+            'menus' => $menus,
+            'user' => $user
         ]);
         
     }

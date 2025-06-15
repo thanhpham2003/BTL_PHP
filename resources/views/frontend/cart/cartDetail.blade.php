@@ -79,7 +79,7 @@
 
 
     <!-- Shoping Cart -->
-    <form class="bg0 p-t-75 p-b-85" action="{{ route('fr.order') }}" method="POST">
+    <form class="bg0 p-t-75" action="{{ route('fr.order') }}" method="POST">
         @csrf
         <div class="container">
             <div class="row">
@@ -161,37 +161,71 @@
                         <div class="p-t-20">
                             <span class="stext-110 cl2">Thông tin giao hàng:</span>
                             <div class="checkout-input">
-                                <input type="text" id="name" name="name" placeholder="Họ và tên" required>
+                                <input type="text" id="name" name="name" placeholder="Họ và tên" required value = "{{$user->name}}">
                             </div>
                             <div class="checkout-input">
-                                <input type="text" id="phone" name="phone" placeholder="Số điện thoại" required>
+                                <input type="text" id="phone" name="phone" placeholder="Số điện thoại" required value = "{{$user->phone_number}}">
                             </div>
                             <div class="checkout-input">
                                 <input type="text" id="address" name="address" placeholder="Địa chỉ giao hàng"
-                                    required>
+                                    required value = "{{$user->address}}">
+                            </div>
+                            <div class="checkout-input">
+                                <input type="text" id="note" name="note" placeholder="Ghi chú">
                             </div>
                         </div>
 
                         <!-- Chọn hình thức thanh toán -->
                         <div class="p-t-15">
-                            <span class="stext-112 cl2">Chọn hình thức thanh toán:</span>
-                            <div class="checkout-select">
-                                <select name="payment_method">
+                            <span class="stext-112 cl2 d-block mb-2">Phương thức thanh toán:</span>
+                            
+                            <div class="checkout-select mb-3">
+                                <select name="payment_method" class="form-select">
                                     <option value="cod">Thanh toán khi nhận hàng (COD)</option>
-                                    <option value="momo">Thanh toán qua Momo</option>
+                                    {{-- Có thể thêm lựa chọn khác nếu cần --}}
                                 </select>
                             </div>
-                        </div>
 
-                        <!-- Nút đặt hàng -->
-                        <button class="checkout-btn">ĐẶT HÀNG</button>
+                            <!-- Nút đặt hàng cho COD -->
+                            <button type="submit" class="checkout-btn btn btn-success w-100 mb-3">ĐẶT HÀNG (COD)</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </form>
+    <div class = "container-xl">
+        <div class = "row">
+            <div class = "col-4"></div>
+            <div class = "col-4"></div>
+            <div class = "col-4">
+                <div class="d-flex justify-content-center">
+                    <form action="{{ route('user.payment') }}" method="POST" class="bg0 p-t-25 p-b-50" style="max-width: 400px;">
+                        @csrf
+                        {{-- Dữ liệu ẩn --}}
+                        <input type="hidden" name="user_id" value="{{$user->id}}">
+                        <input type="hidden" name="name" value="{{$user->name}}">
+                        <input type="hidden" name="total" value="{{$cart->total()}}">
+                        <input type="hidden" name="phone" value="{{$user->phone_number}}">
+                        <input type="hidden" name="address" value="{{$user->address}}">
+                        <input type="hidden" name="note" value="">
+                        @foreach ($cart->content() as $key => $item)
+                            <input type="hidden" name="cart[{{ $key }}][product_id]" value="{{ $item->product->id }}">
+                            <input type="hidden" name="cart[{{ $key }}][product_name]" value="{{ $item->product->name }}">
+                            <input type="hidden" name="cart[{{ $key }}][price]" value="{{ $item->product->price_sale ?? $item->product->price }}">
+                            <input type="hidden" name="cart[{{ $key }}][size_id]" value="{{ $item->getSize()->id }}">
+                            <input type="hidden" name="cart[{{ $key }}][size]" value="{{ $item->getSize()->name }}">
+                            <input type="hidden" name="cart[{{ $key }}][quantity]" value="{{ $item->quantity }}">
+                        @endforeach
 
+                        <button type="submit" class="btn btn-outline-danger w-100 py-2 fs-5 shadow-sm">
+                            Chuyển đến trang thanh toán Online
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Back to top -->
     <div class="btn-back-to-top" id="myBtn">
@@ -359,8 +393,6 @@
                 });
 
             });
-
-
         });
     </script>
 @endsection

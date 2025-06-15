@@ -9,6 +9,9 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Bills;
+use App\Models\Size;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
@@ -24,7 +27,7 @@ class OrderController extends Controller
         DB::transaction(function() use($request, $cart){
             $order = Order::create([
                 'user_id'         => Auth::id() ?? null, // Nếu khách chưa đăng nhập
-                'customer_name'   => $request->name,
+                'customer_name'   => $request->name, 
                 'customer_phone'  => $request->phone,
                 'customer_address'=> $request->address,
                 'status'          => 'pending',
@@ -41,12 +44,31 @@ class OrderController extends Controller
                     'size_id'    => $item->sizeId,
                     'price'      => $item->product->price_sale ?? $item->product->price,
                 ]);
+
+                $product_name = Product::find($item->product->id)->name;
+                $product_size = Size::find($item->sizeId)->name;
+
+                // Tạo hoá đơn
+                $bills =  Bills::create([
+                    'user_id' => Auth::id() ?? null,
+                    'customer_name' => $request->name,
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                    'total_amount' => $cart->rawTotal(),
+                    'products' => [
+                        'product_name' => $product_name,
+                        'quantity' => $item->quantity,
+                        'price' => $item->product->price_sale ?? $item->product->price,
+                        'size' => $product_size,
+                    ],
+                    'payment_method' => $request->payment_method,
+                    'note' => $request->note,
+                    'order_id' => $order->id,
+                ]);
             }
-    
         });
         // // Xóa giỏ hàng sau khi đặt hàng thành công
         $cart->destroy();
-
     }
 }
 

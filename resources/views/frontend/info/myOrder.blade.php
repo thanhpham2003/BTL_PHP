@@ -111,7 +111,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="7" class="text-center">Chưa có đơn hàng nào đã giao thành công.</td>
+                                <td colspan="7" class="text-center">Không có đơn hàng nào.</td>
                             </tr>
                         @endif
                     </tbody>

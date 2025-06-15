@@ -14,7 +14,7 @@ services:
     depends_on:
       - php
     networks:
-      - laravel
+      - my-network
     platform: linux/arm64
 
   php:
@@ -25,28 +25,9 @@ services:
       - .:/var/www/html
       - ./public:/var/www/html/public
     networks:
-      - laravel
+      - my-network
     platform: linux/arm64
 
-  mysql:
-    image: mysql:latest
-    container_name: mysql
-    restart: unless-stopped
-    env_file: ".env"
-    ports:
-      - "3307:3306"
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_SSL_CA: /var/lib/mysql/ca.pem
-      MYSQL_SSL_CERT: /var/lib/mysql/server-cert.pem
-      MYSQL_SSL_KEY: /var/lib/mysql/server-key.pem
-    networks:
-      - laravel
-    volumes:
-      - ./mysql_data:/var/lib/mysql
-
 networks:
-  laravel:
+  my-network:
+    external: true
