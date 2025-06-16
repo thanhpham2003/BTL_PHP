@@ -14,6 +14,7 @@ use App\Models\Size;
 
 class PayController extends Controller
 {
+    // Load checkout form payment
     public function checkoutForm(Request $request)
     {   
         $customer = [
@@ -27,6 +28,8 @@ class PayController extends Controller
 
         // $cart = $request->input('cart', []);
         $cart = Cart::getInstance(auth("frontend")->id());
+        
+        // add order to database
         $order = Order::create([
             'user_id' => $customer['user_id'],
             'customer_name' => $customer['name'],
@@ -38,6 +41,8 @@ class PayController extends Controller
         ]);
         $cartItems = $cart->content();
         foreach ($cart->content() as $item) {
+
+            // add order item to database
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item->product->id,
@@ -48,6 +53,8 @@ class PayController extends Controller
 
             $product_name = Product::find($item->product->id)->name;
             $product_size = Size::find($item->sizeId)->name;
+
+            // add bill to database
             $bills =  Bills::create([
                 'user_id' => $customer['user_id'],
                 'customer_name' => $customer['name'],
@@ -66,6 +73,8 @@ class PayController extends Controller
             ]);
         }
         $menus = Menu::all();
+        
+        // Xoá giỏ hàng sau khi đặt hàng thành công
         $cart->destroy();
 
         return view('frontend.pay.checkoutConfirm', [
@@ -77,7 +86,7 @@ class PayController extends Controller
         ]);
     }
 
-    // Thanh toán momo
+    // payment with momo 
     public function createPayment(Request $request)
     {
         $dataOrder = $request->all();
@@ -129,6 +138,7 @@ class PayController extends Controller
     }
 
 
+    // return redirect success and failed
     public function return(Request $request)
     {
         if ($request->query('resultCode') == '0') {

@@ -48,7 +48,7 @@ class OrderController extends Controller
                 $product_name = Product::find($item->product->id)->name;
                 $product_size = Size::find($item->sizeId)->name;
 
-                // Tạo hoá đơn
+                // create bill
                 $bills =  Bills::create([
                     'user_id' => Auth::id() ?? null,
                     'customer_name' => $request->name,

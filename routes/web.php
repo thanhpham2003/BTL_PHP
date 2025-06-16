@@ -156,6 +156,7 @@ Route::controller(UserInfoController::class)->group(function() {
     Route::get('/user-info/index', 'index')->name('user.info');
     Route::get('/my-order', 'myOrderIndex')->name('user.myOrder');
     Route::put('/my-order/cancel/{id}', 'cancelOrder')->name('user.cancelOrder');
+    Route::put('/user-info/update/{id}', 'update')->name('user.update');
 });
 
 Route::controller(PayController::class)->group(function() {
