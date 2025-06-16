@@ -91,7 +91,7 @@ class ProductAdminController extends Controller
             'product' => $product, 
             'menus' => $menus,
             'sizes' => Size::all(),
-            'products' => $this->productService->get()
+            'products' => Product::with('sizes', 'menu')->paginate(5),
         ]);
     }
 

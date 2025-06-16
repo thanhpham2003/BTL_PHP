@@ -20,8 +20,8 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
+                    <a class="nav-link" data-widget="fullscreen" href="/" role="button">
+                        Trở lại trang chủ
                     </a>
                 </li>
 
@@ -65,10 +65,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Nguyễn Phú Mạnh</b>
-            </div>
-            <strong>FASHION IS NO1</strong>
+
         </footer>
 
         <!-- Control Sidebar -->

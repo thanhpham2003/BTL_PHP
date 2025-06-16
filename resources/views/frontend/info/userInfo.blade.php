@@ -14,7 +14,6 @@
                             <img src = "{{ asset('image/default-avatar.jpg') }}" class = "img-fluid" alt = "Ảnh đại diện">
                             <h4 class = "text-center mt-4 mb-4 text-primary">{{$user->name}}</h4>
                             <div class="d-flex align-items-center justify-content-center" role="group">
-                                <button type="button" class="btn btn-primary me-2">Sửa ảnh đại diện</button>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editInfoModal">
                                     Sửa thông tin cá nhân
                                 </button>

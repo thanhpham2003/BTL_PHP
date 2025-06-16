@@ -152,6 +152,7 @@ Route::middleware(['auth:frontend'])->group(function () {
 });
 
 
+// Route cho user info và order
 Route::controller(UserInfoController::class)->group(function() {
     Route::get('/user-info/index', 'index')->name('user.info');
     Route::get('/my-order', 'myOrderIndex')->name('user.myOrder');

@@ -56,11 +56,6 @@ class UserInfoController extends Controller
     }
 
     // cập nhật thông tin cá nhân
-    // public function update(Request $request)
-    // {
-    //     $user = User::withoutGlobalScopes()->find($request->id);
-        
-    // }
     public function update(Request $request)
     {
         $user = User::withoutGlobalScopes()->find($request->id);
